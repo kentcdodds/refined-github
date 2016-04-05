@@ -33,7 +33,16 @@ window.pageDetect = (() => {
 
 	const isBlame = () => isRepo() && /^\/blame\//.test(getRepoPath());
 
-	const isSingleFile = () => isRepo() && /\/blob\//.test(getRepoPath());
+	const getOwnerAndRepo = () => {
+		const [, ownerName, repoName] = location.pathname.split('/');
+		return {ownerName, repoName};
+	};
+
+	const isSingleFile = () => {
+		const {ownerName, repoName} = getOwnerAndRepo();
+		const blobPattern = new RegExp(`/${ownerName}/${repoName}/blob/`);
+		return isRepo() && blobPattern.test(location.href);
+	};
 
 	return {
 		isGist,
@@ -51,6 +60,7 @@ window.pageDetect = (() => {
 		isCommit,
 		isReleases,
 		isBlame,
+		getOwnerAndRepo,
 		isSingleFile
 	};
 })();
