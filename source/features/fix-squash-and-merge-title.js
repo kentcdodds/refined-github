@@ -1,6 +1,9 @@
 import select from 'select-dom';
 
 export default function () {
+	// CUSTOM: I don't want to change the squash and merge commit message.
+	// I want it to be what I set it to be :)
+	return;
 	const btn = select('.merge-message .btn-group-squash [type=submit]');
 	if (!btn) {
 		return;

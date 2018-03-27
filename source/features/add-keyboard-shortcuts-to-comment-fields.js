@@ -22,6 +22,8 @@ export default function () {
 	registerShortcut('issues', '↑', 'Edit your last comment');
 
 	delegate('.js-comment-field', 'keydown', event => {
+		// CUSTOM: I don't like this, I want to move on to the next field
+		return;
 		const field = event.target;
 
 		// Don't do anything if the suggester box is active
